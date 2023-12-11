@@ -4,6 +4,6 @@
 
 @layer components {
   .navLink {
-  @apply text-[18px] hover:text-accent
+  @apply text-[18px] hover:text-red-600
   }
   }

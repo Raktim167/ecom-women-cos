@@ -21,7 +21,7 @@ const NewProducts = () => {
   };
 
   useEffect(() => {
-    setData(shuffleArray(Data).slice(0, 3));
+    setData(shuffleArray(Data).slice(0, 4));
   }, []);
 
   const handleTab = (index: number) => {
@@ -29,7 +29,7 @@ const NewProducts = () => {
     setSelectedTab(index);
 
     if (category === "all") {
-      setData(shuffleArray(Data).slice(0, 3));
+      setData(shuffleArray(Data).slice(0, 4));
       return;
     }
 
@@ -43,7 +43,7 @@ const NewProducts = () => {
   return (
     <div className="container pt-32">
       <div className="text-center">
-        <h3 className={`${whisper.className} text-[40px] text-gray-500`}>
+        <h3 className={`${whisper.className} text-[75px] text-red-600`}>
           For your beauty
         </h3>
         <h2 className="font-semibold text-5xl">New Arrival</h2>
@@ -55,8 +55,8 @@ const NewProducts = () => {
             <li
               key={text}
               className={`${
-                selectedTab === index && "text-accent"
-              } cursor-pointer hover:text-accent`}
+                selectedTab === index && "text-red-600"
+              } cursor-pointer hover:text-red-600`}
               onClick={() => handleTab(index)}
             >
               {text}

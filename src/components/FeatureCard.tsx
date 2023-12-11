@@ -17,7 +17,7 @@ const FeatureCard = ({ img, title, desc }: propsType) => {
       />
 
       <div className="space-y-1">
-        <h2 className="font-medium text-xl uppercase">{title}</h2>
+        <h2 className="text-red-600 font-medium text-xl uppercase">{title}</h2>
         <p className="text-gray-600 text-[14px]">{desc}</p>
       </div>
     </div>

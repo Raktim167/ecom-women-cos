@@ -26,10 +26,11 @@ export default [
     {
         id: 3,
         img: "/product__4.png",
-        name: "Wild Slik Lipstick",
+        name: "Wild Slik Lipstick1",
         price: 380,
         category: ["lipsticks", "makeup"],
         sale: true,
+        comp: "New india",
     },
     {
         id: 4,

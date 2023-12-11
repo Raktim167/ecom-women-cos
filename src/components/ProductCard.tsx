@@ -1,3 +1,5 @@
+import { addToCart } from "@/redux/features/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -20,6 +22,7 @@ export interface IProduct {
 const ProductCard = ({id, img, name, price, sale }: IProduct) => {
 
     const router = useRouter();
+    const dispatch = useAppDispatch()
 
     const getRating =()=> {
         const randomNumber =(min:number, max:number)=> {
@@ -29,7 +32,7 @@ const ProductCard = ({id, img, name, price, sale }: IProduct) => {
         switch(randomNumber(0,5)) {
             case 0:
                 return (
-                    <div className="flex justify-center text-accent pt-4 pb-2">
+                    <div className="flex justify-center text-red-600 pt-4 pb-2">
                         <AiOutlineStar />
                         <AiOutlineStar />
                         <AiOutlineStar />
@@ -40,7 +43,7 @@ const ProductCard = ({id, img, name, price, sale }: IProduct) => {
 
             case 1:
                 return (
-                    <div className="flex justify-center text-accent pt-4 pb-2">
+                    <div className="flex justify-center text-red-600 pt-4 pb-2">
                         <AiFillStar />
                         <AiOutlineStar />
                         <AiOutlineStar />
@@ -51,7 +54,7 @@ const ProductCard = ({id, img, name, price, sale }: IProduct) => {
 
             case 2:
                 return (
-                    <div className="flex justify-center text-accent pt-4 pb-2">
+                    <div className="flex justify-center text-red-600 pt-4 pb-2">
                         <AiFillStar />
                         <AiFillStar />
                         <AiOutlineStar />
@@ -62,7 +65,7 @@ const ProductCard = ({id, img, name, price, sale }: IProduct) => {
 
             case 3:
                 return (
-                    <div className="flex justify-center text-accent pt-4 pb-2">
+                    <div className="flex justify-center text-red-600 pt-4 pb-2">
                         <AiFillStar />
                         <AiFillStar />
                         <AiFillStar />
@@ -73,7 +76,7 @@ const ProductCard = ({id, img, name, price, sale }: IProduct) => {
                 
             case 4:
                 return (
-                    <div className="flex justify-center text-accent pt-4 pb-2">
+                    <div className="flex justify-center text-red-600 pt-4 pb-2">
                         <AiFillStar />
                         <AiFillStar />
                         <AiFillStar />
@@ -84,7 +87,7 @@ const ProductCard = ({id, img, name, price, sale }: IProduct) => {
 
             case 5:
                 return (
-                    <div className="flex justify-center text-accent pt-4 pb-2">
+                    <div className="flex justify-center text-red-600 pt-4 pb-2">
                         <AiFillStar />
                         <AiFillStar />
                         <AiFillStar />
@@ -100,7 +103,13 @@ const ProductCard = ({id, img, name, price, sale }: IProduct) => {
     }
   
 
-
+    const addProductToCart = (e: React.FormEvent) => {
+        e.stopPropagation()
+        const payload = {
+            id, name, img, price, quantity: 1
+        }
+        dispatch(addToCart(payload))
+    }
 
   return (
     <div className="group cursor-pointer"
@@ -129,7 +138,7 @@ const ProductCard = ({id, img, name, price, sale }: IProduct) => {
                         <AiOutlineHeart />
                     </div>
                     <div className="bg-white w-[50px] h-[50px] text-[26px] grid place-items-center"
-                        //  onClick={addProductToCart}
+                         onClick={addProductToCart}
                     >
                         <AiOutlineShoppingCart />
                     </div>
@@ -138,9 +147,9 @@ const ProductCard = ({id, img, name, price, sale }: IProduct) => {
 
         </div>
 
-        {getRating()}
+        {/* {getRating()} */}
 
-        <h2 className="font-medium pb-3 hover:text-accent">{name}</h2>
+        <h2 className="font-medium pt-3 pb-3 text-red-600">{name}</h2>
         <p className="text-gray-600 font-light">Rs. {price}.00</p>
 
     </div>
