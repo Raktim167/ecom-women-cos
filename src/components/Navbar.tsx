@@ -13,8 +13,8 @@ const NavBar = ({setShowCart}: any) => {
     <div className="bg-white py-4 sticky top-0 z-10">
       <div className="container flex justify-between items-center">
         <RxHamburgerMenu className="sm:hidden text-[26px]" />
-        <Link href="/" className="text-4xl font-semibold hover:text-red-600">
-          Logo
+        <Link href="/" className="text-red-600 text-4xl font-semibold hover:text-[#333]">
+          COSMO.COM
         </Link>
         <ul className="gap-6 hidden sm:flex">
           <Link href="/" className="navLink">
@@ -32,7 +32,7 @@ const NavBar = ({setShowCart}: any) => {
           >
             <AiOutlineShoppingCart />
             <div className="absolute top-[-15px] right-[-10px] bg-red-600 w-[25px] h-[25px]
-                                rounded-full Itext-white text-[14px] grid place-items-center"
+                                rounded-full text-white text-[14px] grid place-items-center"
             >
               {cartCount}
             </div>

@@ -3,24 +3,46 @@
 // import { IProduct } from '@/components/ProductCard';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import Data from "@/utils/productData";
+import Data from "@/utils/productData.json";
 import Link from 'next/link';
 import Image from 'next/image';
 import { AiFillStar, AiOutlineShoppingCart, AiOutlineStar } from 'react-icons/ai';
-
+import { addToCart } from "@/redux/features/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { FaFacebookSquare , FaTwitter, FaInstagram} from "react-icons/fa";
 
-const DetailPage = () => {
+
+
+export interface IProduct {
+    id: number;
+    img: string;
+    name: string;
+    price: number;
+    sale: boolean | undefined;
+  }
+
+const DetailPage = ({id, img, name, price, sale }: IProduct) => {
     const params = useParams();
     const [productData, setProductData] = useState<any>();
+    const dispatch = useAppDispatch()
+    
 
     useEffect(()=>{
         const id = params.id;
-        const getProductData = Data.filter((item)=>
+        const getProductData = Data.filter((item: any)=>
          item.id.toString() === id)[0];
-         console.log(getProductData);
+         console.log("qqq",getProductData);
          setProductData(getProductData);
     });
+
+    const addProductToCart = (e: React.FormEvent) => {
+        e.stopPropagation()
+        console.log("aaa",id, name, img, price)
+        const payload = {
+            id: productData.id, name: productData.name, img: productData.img, price: productData.price, quantity: 1
+        }
+        dispatch(addToCart(payload))
+    }
 
   return (
     <div className='pt-8'>
@@ -60,8 +82,8 @@ const DetailPage = () => {
                     </div>
 
                     <div className='text-[#161616]  space-y-6'>
-                        <h2 className='text-3xl font-semibold'>{productData?.name}</h2>
-                        <p>Rs. {productData?.price}.00</p>
+                        <h2 className='text-3xl text-red-600 font-semibold'>{productData?.name}</h2>
+                        <p className='text-xl text-gray-800 font-semibold'>Rs. {productData?.price}.00</p>
                     </div>
 
                     <p className='text-gray-500 text-[14px]'>
@@ -71,14 +93,14 @@ const DetailPage = () => {
                         Asperiores praesentium sed, incidunt amet veritatis quidem itaque eius voluptatem. Consectetur voluptatem excepturi assumenda distinctio, sint expedita rerum voluptatibus officiis exercitationem ut facilis esse quis veniam labore eos amet necessitatibus natus fugiat ipsam dolores! Repellat ut optio fugiat doloribus architecto facilis iusto.
                     </p>
 
-                    <p className='text-gray-500 text-[14px] font-bold'>
+                    <p className='text-red-600 text-[14px] font-bold'>
                         IN STOCK !! Hurray
                     </p>
 
                     <button 
                         className='uppercase bg-red-600 py-4 px-8 rounded-lg 
                           text-white flex gap-2 items-center hover:bg-black'
-                        // onClick={addProductToCart}
+                        onClick={addProductToCart}
                     >
                         <AiOutlineShoppingCart className="text-[24px]" />
                         Add to cart

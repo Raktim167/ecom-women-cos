@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Whisper } from "next/font/google";
-import Data from "@/utils/productData";
+import Data from "@/utils/productData.json";
 import ProductCard, { IProduct } from "./ProductCard";
 
 const whisper = Whisper({ subsets: ["latin"], weight: ["400"] });
@@ -21,7 +21,7 @@ const NewProducts = () => {
   };
 
   useEffect(() => {
-    setData(shuffleArray(Data).slice(0, 4));
+    setData(shuffleArray(Data).slice(0, 16));
   }, []);
 
   const handleTab = (index: number) => {
@@ -29,7 +29,7 @@ const NewProducts = () => {
     setSelectedTab(index);
 
     if (category === "all") {
-      setData(shuffleArray(Data).slice(0, 4));
+      setData(shuffleArray(Data).slice(0, 16));
       return;
     }
 
@@ -46,7 +46,7 @@ const NewProducts = () => {
         <h3 className={`${whisper.className} text-[75px] text-red-600`}>
           For your beauty
         </h3>
-        <h2 className="font-semibold text-5xl">New Arrival</h2>
+        <h2 className="font-semibold text-5xl text-red-400">New Arrival</h2>
         <ul
           className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center pt-8 uppercase
                         font-medium text-xl"

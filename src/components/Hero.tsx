@@ -21,7 +21,7 @@ const Hero = () => {
           Lorem, ipsum dolor sit amet consectetur.
         </p>
         <button
-          className="bg-[#333] uppercase text-white text-[12px] lg:text-[16px] py-2 xl:py-4 px-8 rounded-md hover:bg-red-600"
+          className="bg-red-600 uppercase text-white text-[12px] lg:text-[16px] py-2 xl:py-4 px-8 rounded-md hover:bg-[#333]"
         >
           Shop Now
         </button>
